@@ -21,12 +21,14 @@ void execute_command(char *args[])
 	if (pid == -1)
 	{
 		perror("Error: fork failed");
+		free(path);
 		exit(EXIT_SUCCESS);
 	}
 	else if (pid == 0)
 	{
 		execve(path, args, NULL);
 		perror("Error");
+		free(path);
 		exit(EXIT_FAILURE);
 
 	}
